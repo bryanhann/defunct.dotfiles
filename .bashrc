@@ -1,5 +1,5 @@
-alias dotfiles='/usr/bin/git --git-dir=$HOME/..dotfiles/ --work-tree=$HOME'
-dotfiles config --local status.showUntrackedFiles no
+alias sod='/usr/bin/git --git-dir=$HOME/.sod/dotfiles.git/ --work-tree=$HOME'
+sod config --local status.showUntrackedFiles no
 
 # trap exit if not in subshell, because having your term disappear is annoying.
 
