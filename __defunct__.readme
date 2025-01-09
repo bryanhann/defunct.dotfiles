@@ -1,0 +1,21 @@
+Simply two dotfiles: [.profile] and [.bashrc]
+
+The [.bashrc] file starts:
+    """
+    echo --[$0] [$*]
+    alias sod='/usr/bin/git --git-dir=$HOME/.sod/dotfiles.git/ --work-tree=$HOME'
+    sod config --local status.showUntrackedFiles no
+
+    # trap exit if not in subshell, because having your term disappear is annoying.
+
+    [ "$MUSE_PPID" == "" ] && export MUSE_PPID=$PPID
+    function exit() { [ "$MUSE_PPID" == "$PPID" ] && echo Try \'builtin exit\' || builtin exit; }
+
+    # configure prompt to show git info and to indicate depth of subshell
+
+    source $HOME/.git-prompt.sh
+    PROMPT_COMMAND='__git_ps1 "[$MUSE_DEPTH] [\w]" "\\\$ "'
+    PS1=$PROMPT_COMMAND
+    export MUSE_DEPTH=$(( MUSE_DEPTH + 1 ))
+    """
+
